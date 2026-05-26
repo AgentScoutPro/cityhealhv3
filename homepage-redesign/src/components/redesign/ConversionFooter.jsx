@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import ScrollCanvasSequencer from './ScrollCanvasSequencer';
 
 export default function ConversionFooter() {
   const [submitted, setSubmitted] = useState(false);
@@ -20,6 +21,18 @@ export default function ConversionFooter() {
       id="section-footer"
       className="relative w-full bg-gradient-to-b from-[#0D1117] via-[#120D1A] to-[#0A0D12] text-white pt-32 pb-12 px-6 overflow-hidden border-t border-white/5"
     >
+      {/* Canvas background — footer-bg sequence */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.18] mix-blend-screen" aria-hidden="true">
+        <ScrollCanvasSequencer
+          desktopFolder="/assets/scroll-sequences/conversion-footer"
+          mobileFolder="/assets/scroll-sequences/conversion-footer"
+          framePrefix="footer-bg"
+          totalDesktopFrames={60}
+          totalMobileFrames={60}
+          triggerId="section-footer"
+        />
+      </div>
+
       {/* Background radial bloom */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#4FACFE]/5 rounded-full blur-[140px] pointer-events-none" aria-hidden="true" />
 

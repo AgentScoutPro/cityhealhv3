@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import ScrollCanvasSequencer from './ScrollCanvasSequencer';
 
 const CONDITIONS = [
   { name: 'NEUROPATHY',      err: '[ ERROR: 404 PATHWAY NOT FOUND. INITIATING RST-SANEXAS SIGNAL SCAN... ]' },
@@ -22,6 +23,18 @@ export default function CoreProblemSplit() {
       id="problem-trigger"
       className="relative w-full min-h-screen bg-white text-[#0D1117] flex flex-col md:flex-row items-center justify-between px-8 md:px-20 py-24 border-y border-slate-100"
     >
+      {/* Canvas background — problem-frame sequence */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.07] mix-blend-multiply" aria-hidden="true">
+        <ScrollCanvasSequencer
+          desktopFolder="/assets/scroll-sequences/core-problem/desktop"
+          mobileFolder="/assets/scroll-sequences/core-problem/mobile"
+          framePrefix="problem-frame"
+          totalDesktopFrames={120}
+          totalMobileFrames={60}
+          triggerId="problem-trigger"
+        />
+      </div>
+
       {/* ── Left: diagnosis statement ──────────────────────────────────────── */}
       <div className="w-full md:w-1/2 flex flex-col justify-center mb-12 md:mb-0 relative z-20">
         <span className="text-xs font-mono font-bold tracking-widest text-neon-teal uppercase mb-4">
@@ -40,7 +53,7 @@ export default function CoreProblemSplit() {
       </div>
 
       {/* ── Right: kinetic slot-machine condition reel ─────────────────────── */}
-      <div className="w-full md:w-1/2 h-[450px] flex items-center justify-center relative overflow-hidden bg-slate-50 border border-slate-200/60 rounded-none p-6">
+      <div className="w-full md:w-1/2 h-[450px] flex items-center justify-center relative z-20 overflow-hidden bg-slate-50 border border-slate-200/60 rounded-none p-6">
         {/* Fade masks top/bottom */}
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent pointer-events-none z-10" />
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />

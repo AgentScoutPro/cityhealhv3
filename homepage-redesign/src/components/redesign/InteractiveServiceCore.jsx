@@ -1,5 +1,7 @@
 'use client';
 
+import ScrollCanvasSequencer from './ScrollCanvasSequencer';
+
 const PILLARS = [
   {
     title: 'Neuropathy Repair',
@@ -59,10 +61,22 @@ function BentoBox({ title, body, cta, status }) {
 
 export default function InteractiveServiceCore() {
   return (
-    <section className="w-full bg-deep-space py-32 px-6 md:px-16 relative border-t border-white/5">
+    <section id="service-core-trigger" className="w-full bg-deep-space py-32 px-6 md:px-16 relative border-t border-white/5">
+      {/* Canvas background — aging-frame sequence */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.3] mix-blend-screen" aria-hidden="true">
+        <ScrollCanvasSequencer
+          desktopFolder="/assets/scroll-sequences/service-bento"
+          mobileFolder="/assets/scroll-sequences/service-bento"
+          framePrefix="aging-frame"
+          totalDesktopFrames={120}
+          totalMobileFrames={120}
+          triggerId="service-core-trigger"
+        />
+      </div>
+
       {/* Top neon accent */}
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-neon-cyan/30 to-transparent pointer-events-none" aria-hidden="true" />
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="mb-16">
           <span className="text-xs font-mono tracking-[0.3em] text-neon-cyan">
             // INTEGRATED PATHWAYS

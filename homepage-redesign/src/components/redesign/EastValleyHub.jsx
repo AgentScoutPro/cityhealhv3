@@ -1,5 +1,7 @@
 'use client';
 
+import ScrollCanvasSequencer from './ScrollCanvasSequencer';
+
 const INSURANCES = [
   'MEDICARE', 'UNITEDHEALTHCARE', 'BCBS', 'CIGNA',
   'AETNA', 'HUMANA', 'TRICARE', 'HEALTH NET', 'UMR',
@@ -43,8 +45,20 @@ export default function EastValleyHub() {
   const marqueeItems = Array(4).fill(INSURANCES).flat();
 
   return (
-    <section className="w-full bg-deep-space pt-32 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 mb-16 text-center md:text-left">
+    <section id="east-valley-trigger" className="relative w-full bg-deep-space pt-32 border-t border-white/5">
+      {/* Canvas background — longmore-map sequence */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.22] mix-blend-screen" aria-hidden="true">
+        <ScrollCanvasSequencer
+          desktopFolder="/assets/scroll-sequences/east-valley-hub"
+          mobileFolder="/assets/scroll-sequences/east-valley-hub"
+          framePrefix="longmore-map"
+          totalDesktopFrames={120}
+          totalMobileFrames={120}
+          triggerId="east-valley-trigger"
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 mb-16 text-center md:text-left relative z-10">
         <span className="text-xs font-mono tracking-[0.3em] text-neon-cyan">
           // FACILITY ACCESS POINTS
         </span>
@@ -54,7 +68,7 @@ export default function EastValleyHub() {
       </div>
 
       {/* ── Dual location panels ───────────────────────────────────────────── */}
-      <div className="w-full flex flex-col md:flex-row border-b border-white/5 location-wrapper">
+      <div className="relative z-10 w-full flex flex-col md:flex-row border-b border-white/5 location-wrapper">
         <LocationCard
           maskText="LONGMORE"
           title="Central Mesa Hub"
@@ -74,7 +88,7 @@ export default function EastValleyHub() {
       </div>
 
       {/* ── Insurance carrier marquee ──────────────────────────────────────── */}
-      <div className="w-full bg-black/40 py-5 overflow-hidden flex whitespace-nowrap border-b border-white/5">
+      <div className="relative z-10 w-full bg-black/40 py-5 overflow-hidden flex whitespace-nowrap border-b border-white/5">
         <div className="animate-marquee flex space-x-12 shrink-0 text-[10px] font-mono font-bold tracking-[0.25em] text-slate-400 uppercase">
           {marqueeItems.map((ins, idx) => (
             <span key={idx} className="flex items-center">

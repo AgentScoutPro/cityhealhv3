@@ -116,7 +116,12 @@ export default function ScrollCanvasSequencer({
       if (!trigger) return;
       const rect = trigger.getBoundingClientRect();
       const totalScrollHeight = rect.height - window.innerHeight;
-      let progress = Math.max(0, Math.min(1, -rect.top / totalScrollHeight));
+      let progress;
+      if (totalScrollHeight <= 0) {
+        progress = rect.top < 0 ? 1 : 0;
+      } else {
+        progress = Math.max(0, Math.min(1, -rect.top / totalScrollHeight));
+      }
       stateRef.current.targetFrame = progress * (stateRef.current.totalFrames - 1);
     };
 
