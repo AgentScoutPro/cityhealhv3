@@ -106,6 +106,13 @@ export default function ScrollCanvasSequencer({
         ox = (cw - dw) / 2;
       }
 
+      // 1.15× overscan — pushes bottom-right corner watermark out of frame
+      const OVERSCAN = 1.15;
+      dw *= OVERSCAN;
+      dh *= OVERSCAN;
+      ox = (cw - dw) / 2;
+      oy = (ch - dh) / 2;
+
       ctx.clearRect(0, 0, cw, ch);
       ctx.drawImage(img, ox, oy, dw, dh);
     };
@@ -125,13 +132,13 @@ export default function ScrollCanvasSequencer({
       stateRef.current.targetFrame = progress * (stateRef.current.totalFrames - 1);
     };
 
-    // LERP animation loop — 0.1 dampening for mobile-physics inertia
+    // LERP animation loop — 0.15 dampening for snappy scroll response
     let rafId;
     const lerpLoop = () => {
       const state = stateRef.current;
       const diff = state.targetFrame - state.currentFrame;
       if (Math.abs(diff) > 0.01) {
-        state.currentFrame += diff * 0.1;
+        state.currentFrame += diff * 0.15;
         drawFrame(Math.round(state.currentFrame));
       }
       rafId = requestAnimationFrame(lerpLoop);
