@@ -17,3 +17,4 @@ wp_inject_banner.js
 wp_image_linker.js
 package.json
 package-lock.json
+.vercel
