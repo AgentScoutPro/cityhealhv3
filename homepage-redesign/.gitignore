@@ -1,0 +1,20 @@
+node_modules/
+.next/
+out/
+.env
+.env.local
+.env*.local
+*.log
+.DS_Store
+
+# Scroll-sequence frame dumps (large binary assets — store in Git LFS or CDN)
+public/assets/scroll-sequences/**/*.jpg
+public/assets/scroll-sequences/**/*.jpeg
+public/assets/scroll-sequences/**/*.png
+public/assets/scroll-sequences/**/*.webp
+!public/assets/scroll-sequences/**/.gitkeep
+
+public/assets/scroll-sequences/core-problem/**/*.webp
+public/assets/scroll-sequences/service-bento/**/*.webp
+public/assets/scroll-sequences/east-valley-hub/**/*.webp
+public/assets/scroll-sequences/conversion-footer/**/*.webp

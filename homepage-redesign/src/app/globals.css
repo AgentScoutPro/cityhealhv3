@@ -1,0 +1,192 @@
+/* ─── Google Fonts ────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties (mirrors design-tokens.js) ───────────────────── */
+:root {
+  /* Colors */
+  --color-bg-deep-space:   #0D1117;
+  --color-bg-surface:      #131920;
+  --color-bg-panel:        #161D27;
+  --color-accent-cyan:     #00F2FE;
+  --color-accent-teal:     #4FACFE;
+  --color-accent-glow:     rgba(0, 242, 254, 0.18);
+  --color-contrast-white:  #FFFFFF;
+  --color-contrast-charcoal: #1A1D23;
+  --color-text-primary:    #E8EDF4;
+  --color-text-muted:      #7E9BB5;
+  --color-border-neon:     rgba(0, 242, 254, 0.35);
+  --color-border-subtle:   rgba(255, 255, 255, 0.08);
+  --color-glass-bg:        rgba(13, 17, 23, 0.72);
+  --color-glow-track:      rgba(0, 242, 254, 0.55);
+
+  /* Gradients */
+  --gradient-neon:     linear-gradient(135deg, #00F2FE, #4FACFE);
+  --gradient-neon-h:   linear-gradient(90deg, #00F2FE, #4FACFE);
+
+  /* Typography */
+  --font-heading: 'Barlow Condensed', 'Space Grotesk', ui-sans-serif, system-ui;
+  --font-body:    'Noto Sans', 'Inter', ui-sans-serif, system-ui;
+
+  /* Spacing */
+  --section-pad-y: clamp(5rem, 10vw, 9rem);
+  --section-pad-x: clamp(1.25rem, 5vw, 5rem);
+  --container-max: 1280px;
+
+  /* Shadows */
+  --shadow-neon-sm: 0 0 8px rgba(0, 242, 254, 0.35);
+  --shadow-neon-md: 0 0 20px rgba(0, 242, 254, 0.45), 0 0 40px rgba(79, 172, 254, 0.2);
+  --shadow-neon-lg: 0 0 40px rgba(0, 242, 254, 0.55), 0 0 80px rgba(79, 172, 254, 0.25);
+  --shadow-glass:   0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.08);
+
+  /* Animation */
+  --duration-micro:    150ms;
+  --duration-fast:     300ms;
+  --duration-standard: 600ms;
+  --duration-slow:     1000ms;
+}
+
+/* ─── Base Reset ──────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-bg-deep-space);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─── Heading Defaults ────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  /* No default color — let each section control contrast explicitly */
+}
+
+/* ─── Neon Gradient Text Utility ─────────────────────────────────────────── */
+.text-neon-gradient {
+  background: var(--gradient-neon-h);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glass Panel Utility ────────────────────────────────────────────────── */
+.glass-panel {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid var(--color-border-glass, rgba(255, 255, 255, 0.12));
+  box-shadow: var(--shadow-glass);
+}
+
+/* ─── Neon Border Track ───────────────────────────────────────────────────── */
+.neon-border {
+  border: 1px solid var(--color-border-neon);
+  box-shadow: var(--shadow-neon-md);
+}
+
+/* ─── Section Containers ─────────────────────────────────────────────────── */
+.section-wrap {
+  padding: var(--section-pad-y) var(--section-pad-x);
+}
+
+.container-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ─── Scroll-sequence canvas layer ───────────────────────────────────────── */
+.seq-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ─── Reduced-motion overrides (WCAG) ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .seq-canvas {
+    display: none;
+  }
+}
+
+/* ─── Focus states (WCAG 2.1 AA) ─────────────────────────────────────────── */
+:focus-visible {
+  outline: 3px solid var(--color-accent-cyan);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─── Blueprint: Marquee + Scroll-Loop animations ─────────────────────────── */
+@keyframes marquee {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes scrollLoop {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.animate-scroll-loop {
+  animation: scrollLoop 20s linear infinite;
+}
+.animate-scroll-loop:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Blueprint: Glassmorphism panel (updated) ────────────────────────────── */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Blueprint: Progressive enhancement — native scroll timeline ─────────── */
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+  .sticky-section {
+    animation-timeline: scroll(root);
+  }
+}
+
+
+/* ─── Blueprint: Reduced-motion overrides ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-loop {
+    animation: none !important;
+    transform: none !important;
+  }
+  #canvas-wrapper {
+    display: none !important;
+  }
+}
