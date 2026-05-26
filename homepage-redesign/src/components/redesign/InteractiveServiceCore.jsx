@@ -1,7 +1,21 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import ScrollCanvasSequencer from './ScrollCanvasSequencer';
+
+const fadeIn = {
+  hidden:  { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+const staggerContainer = {
+  hidden:  { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
+const itemFadeIn = {
+  hidden:  { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 const PILLARS = [
   {
@@ -242,7 +256,11 @@ export default function InteractiveServiceCore() {
       <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Section header */}
-        <div className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <motion.div
+          initial="hidden" whileInView="visible" viewport={{ once: true }}
+          variants={fadeIn}
+          className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-4"
+        >
           <div>
             <p
               style={{
@@ -262,7 +280,7 @@ export default function InteractiveServiceCore() {
                 fontSize: 'clamp(2.5rem,6vw,4.5rem)',
                 fontWeight: 900,
                 textTransform: 'uppercase',
-                letterSpacing: '-0.01em',
+                letterSpacing: '-0.05em',
                 lineHeight: 0.95,
                 color: '#FFFFFF',
               }}
@@ -292,14 +310,20 @@ export default function InteractiveServiceCore() {
           >
             Four integrated clinical pathways — each engineered around your biology, not around your symptoms.
           </p>
-        </div>
+        </motion.div>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden" whileInView="visible" viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+        >
           {PILLARS.map((pillar) => (
-            <BentoCard key={pillar.id} {...pillar} />
+            <motion.div key={pillar.id} variants={itemFadeIn}>
+              <BentoCard {...pillar} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>

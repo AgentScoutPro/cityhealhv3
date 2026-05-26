@@ -1,7 +1,21 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import ScrollCanvasSequencer from './ScrollCanvasSequencer';
+
+const fadeIn = {
+  hidden:  { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+const staggerContainer = {
+  hidden:  { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
+};
+const itemFadeIn = {
+  hidden:  { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 const CONDITIONS = [
   { name: 'NEUROPATHY',      err: '[ ERROR: 404 PATHWAY NOT FOUND. INITIATING RST-SANEXAS SIGNAL SCAN... ]' },
@@ -36,12 +50,16 @@ export default function CoreProblemSplit() {
       </div>
 
       {/* ── Left: diagnosis statement ──────────────────────────────────────── */}
-      <div className="w-full md:w-1/2 flex flex-col justify-center mb-12 md:mb-0 relative z-20">
+      <motion.div
+        initial="hidden" whileInView="visible" viewport={{ once: true }}
+        variants={fadeIn}
+        className="w-full md:w-1/2 flex flex-col justify-center mb-12 md:mb-0 relative z-20"
+      >
         <span className="text-xs font-mono font-bold tracking-widest text-neon-teal uppercase mb-4">
           // THE CORE DIAGNOSIS
         </span>
 
-        <h2 className="text-4xl md:text-6xl font-black tracking-tight uppercase leading-none max-w-lg mb-8">
+        <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none max-w-lg mb-8">
           CHRONIC PAIN IS NOT YOUR PERMANENT REALITY.
         </h2>
 
@@ -50,19 +68,29 @@ export default function CoreProblemSplit() {
           <div className="text-[10px] text-neon-teal font-bold mb-2">// CLINICAL RADAR READOUT:</div>
           <p className="min-h-[40px] leading-relaxed transition-all duration-300">{activeReadout}</p>
         </div>
-      </div>
+      </motion.div>
 
       {/* ── Right: kinetic slot-machine condition reel ─────────────────────── */}
-      <div className="w-full md:w-1/2 h-[450px] flex items-center justify-center relative z-20 overflow-hidden bg-slate-50 border border-slate-200/60 rounded-none p-6">
+      <motion.div
+        initial="hidden" whileInView="visible" viewport={{ once: true }}
+        variants={fadeIn}
+        transition={{ delay: 0.15 }}
+        className="w-full md:w-1/2 h-[450px] flex items-center justify-center relative z-20 overflow-hidden bg-slate-50 border border-slate-200/60 rounded-none p-6"
+      >
         {/* Fade masks top/bottom */}
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent pointer-events-none z-10" />
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
 
-        <div className="flex flex-col space-y-4 animate-scroll-loop text-center py-12">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden" whileInView="visible" viewport={{ once: true }}
+          className="flex flex-col space-y-4 animate-scroll-loop text-center py-12"
+        >
           {/* Doubled array for seamless infinite loop */}
           {[...CONDITIONS, ...CONDITIONS].map((cond, idx) => (
-            <div
+            <motion.div
               key={`${cond.name}-${idx}`}
+              variants={itemFadeIn}
               className={`text-2xl md:text-4xl font-black tracking-widest font-sans cursor-crosshair transition-all duration-300 uppercase py-2 border-y border-transparent ${
                 hoveredIndex === idx % CONDITIONS.length
                   ? 'text-neon-cyan scale-105'
@@ -78,10 +106,10 @@ export default function CoreProblemSplit() {
               }}
             >
               {cond.name}
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

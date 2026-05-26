@@ -2,11 +2,25 @@
 const tokens = require('./src/tokens/design-tokens');
 
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+    darkMode: ['class'],
+    content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        // Token aliases
+        // ── shadcn CSS-variable color tokens (Tailwind v3 format) ──────────
+        background:  'var(--background)',
+        foreground:  'var(--foreground)',
+        border:      'var(--border)',
+        input:       'var(--input)',
+        ring:        'var(--ring)',
+        card:        { DEFAULT: 'var(--card)',    foreground: 'var(--card-foreground)' },
+        popover:     { DEFAULT: 'var(--popover)', foreground: 'var(--popover-foreground)' },
+        primary:     { DEFAULT: 'var(--primary)', foreground: 'var(--primary-foreground)' },
+        secondary:   { DEFAULT: 'var(--secondary)', foreground: 'var(--secondary-foreground)' },
+        muted:       { DEFAULT: 'var(--muted)',   foreground: 'var(--muted-foreground)' },
+        accent:      { DEFAULT: 'var(--accent)',  foreground: 'var(--accent-foreground)' },
+        destructive: { DEFAULT: 'var(--destructive)' },
+        // ── Design token aliases ────────────────────────────────────────────
         space: tokens.colors.bg.deepSpace,
         surface: tokens.colors.bg.surface,
         panel: tokens.colors.bg.panel,
@@ -14,7 +28,7 @@ module.exports = {
         charcoal: tokens.colors.contrast.charcoal,
         'text-primary': tokens.colors.text.primary,
         'text-muted': tokens.colors.text.muted,
-        // Blueprint canonical names
+        // ── Blueprint canonical names ───────────────────────────────────────
         'deep-space': '#0D1117',
         'clinical-charcoal': '#1C2128',
         'neon-cyan': '#00F2FE',

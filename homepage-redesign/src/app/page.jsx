@@ -91,7 +91,7 @@ export default function HomePage() {
                 MESA, AZ — EAST VALLEY CLINICAL NETWORK — ACCEPTING NEW PATIENTS
               </p>
 
-              <h1 style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:'clamp(3rem,9vw,7.5rem)', fontWeight:900, lineHeight:.93, letterSpacing:'-.02em', textTransform:'uppercase', marginBottom:'2rem' }}>
+              <h1 style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:'clamp(3rem,9vw,7.5rem)', fontWeight:900, lineHeight:.93, letterSpacing:'-.05em', textTransform:'uppercase', marginBottom:'2rem' }}>
                 PAIN MANAGEMENT,
                 <br />
                 <span style={{ background:'linear-gradient(90deg,#00F2FE 0%,#4FACFE 55%,#43E97B 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>

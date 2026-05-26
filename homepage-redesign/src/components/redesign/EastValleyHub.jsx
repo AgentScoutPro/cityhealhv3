@@ -1,6 +1,20 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import ScrollCanvasSequencer from './ScrollCanvasSequencer';
+
+const fadeIn = {
+  hidden:  { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+const staggerContainer = {
+  hidden:  { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+};
+const itemFadeIn = {
+  hidden:  { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55 } },
+};
 
 const INSURANCES = [
   'MEDICARE', 'UNITEDHEALTHCARE', 'BCBS', 'CIGNA',
@@ -9,7 +23,7 @@ const INSURANCES = [
 
 function LocationCard({ maskText, title, address, coverage, statusDefault, statusReveal }) {
   return (
-    <div className="group relative w-full md:w-1/2 min-h-[420px] border border-white/5 bg-[#0D1117] flex items-center justify-center overflow-hidden transition-all duration-500 hover:border-neon-cyan/30 cursor-pointer">
+    <div className="group relative w-full min-h-[420px] border border-white/5 bg-[#0D1117] flex items-center justify-center overflow-hidden transition-all duration-500 hover:border-neon-cyan/30 cursor-pointer">
 
       {/* Background typographic mask layer */}
       <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none transition-all duration-700 scale-100 group-hover:scale-105 opacity-[0.05] group-hover:opacity-[0.02]">
@@ -58,34 +72,46 @@ export default function EastValleyHub() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 mb-16 text-center md:text-left relative z-10">
+      <motion.div
+        initial="hidden" whileInView="visible" viewport={{ once: true }}
+        variants={fadeIn}
+        className="max-w-7xl mx-auto px-6 mb-16 text-center md:text-left relative z-10"
+      >
         <span className="text-xs font-mono tracking-[0.3em] text-neon-cyan">
           // FACILITY ACCESS POINTS
         </span>
-        <h2 className="text-3xl md:text-5xl font-black tracking-tight uppercase mt-2" style={{ color: '#E8EDF4' }}>
+        <h2 className="text-3xl md:text-5xl font-black tracking-tighter uppercase mt-2" style={{ color: '#E8EDF4' }}>
           Two Modern Spaces
         </h2>
-      </div>
+      </motion.div>
 
       {/* ── Dual location panels ───────────────────────────────────────────── */}
-      <div className="relative z-10 w-full flex flex-col md:flex-row border-b border-white/5 location-wrapper">
-        <LocationCard
-          maskText="LONGMORE"
-          title="Central Mesa Hub"
-          address="1303 S Longmore #8, Mesa, AZ 85202"
-          coverage="Serving Mesa, Tempe, and the Central East Valley."
-          statusDefault="[ HUB: LONGMORE_RD ] // ACCESS STATUS: ACCEPTING NEW PATIENTS"
-          statusReveal="[ CENTRAL MESA NODE CONNECTED ] // WALK-IN SYSTEM OPERATIONAL"
-        />
-        <LocationCard
-          maskText="POWER"
-          title="East Mesa Gateway Hub"
-          address="1234 S Power Rd Suite 202, Mesa, AZ 85206"
-          coverage="Serving East Mesa, Gilbert, Apache Junction, and Queen Creek."
-          statusDefault="[ HUB: POWER_RD ] // ACCESS STATUS: ACCEPTING NEW PATIENTS"
-          statusReveal="[ EAST MESA NODE CONNECTED ] // INTEGRATED MULTI-SPECIALTY TEAM READY"
-        />
-      </div>
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden" whileInView="visible" viewport={{ once: true }}
+        className="relative z-10 w-full flex flex-col md:flex-row border-b border-white/5"
+      >
+        <motion.div variants={itemFadeIn} className="w-full md:w-1/2">
+          <LocationCard
+            maskText="LONGMORE"
+            title="Central Mesa Hub"
+            address="1303 S Longmore #8, Mesa, AZ 85202"
+            coverage="Serving Mesa, Tempe, and the Central East Valley."
+            statusDefault="[ HUB: LONGMORE_RD ] // ACCESS STATUS: ACCEPTING NEW PATIENTS"
+            statusReveal="[ CENTRAL MESA NODE CONNECTED ] // WALK-IN SYSTEM OPERATIONAL"
+          />
+        </motion.div>
+        <motion.div variants={itemFadeIn} className="w-full md:w-1/2">
+          <LocationCard
+            maskText="POWER"
+            title="East Mesa Gateway Hub"
+            address="1234 S Power Rd Suite 202, Mesa, AZ 85206"
+            coverage="Serving East Mesa, Gilbert, Apache Junction, and Queen Creek."
+            statusDefault="[ HUB: POWER_RD ] // ACCESS STATUS: ACCEPTING NEW PATIENTS"
+            statusReveal="[ EAST MESA NODE CONNECTED ] // INTEGRATED MULTI-SPECIALTY TEAM READY"
+          />
+        </motion.div>
+      </motion.div>
 
       {/* ── Insurance carrier marquee ──────────────────────────────────────── */}
       <div className="relative z-10 w-full bg-black/40 py-5 overflow-hidden flex whitespace-nowrap border-b border-white/5">
