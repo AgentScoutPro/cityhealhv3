@@ -1,0 +1,19 @@
+# Root-level ignores for cityhealthv2 repo
+# Only homepage-redesign/ is tracked — WordPress utilities stay local
+
+node_modules/
+.DS_Store
+.env
+.env.local
+*.log
+output/
+downloads-city-health-blog-banners/
+seo-optimized-wp-uploads/
+
+# WordPress utility scripts (local tools — not part of V2 redesign)
+wp_publisher.js
+wp_fix_missing_images.js
+wp_inject_banner.js
+wp_image_linker.js
+package.json
+package-lock.json
