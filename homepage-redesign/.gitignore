@@ -12,3 +12,8 @@ out/
 public/assets/scroll-sequences/**/*.jpg
 public/assets/scroll-sequences/**/*.jpeg
 public/assets/scroll-sequences/**/*.png
+
+public/assets/scroll-sequences/core-problem/**/*.webp
+public/assets/scroll-sequences/service-bento/**/*.webp
+public/assets/scroll-sequences/east-valley-hub/**/*.webp
+public/assets/scroll-sequences/conversion-footer/**/*.webp

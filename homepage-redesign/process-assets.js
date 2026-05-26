@@ -114,24 +114,24 @@ const SECTIONS = [
   {
     id:         'hero-desktop',
     group:      'hero',
-    label:      'S1 Hero Neural [desktop 1920×1080 @60fps → 240 frames]',
-    input:      path.join(SOURCE_ROOT, 'HERO/hero-frame-001.mp4'),
+    label:      'S1 Hero Neural [desktop 1920×1080 @60fps → 142 frames]',
+    input:      path.join(SOURCE_ROOT, 'HERO/hero-frame-001-2.mp4'),
     outputDir:  path.join(ASSETS_ROOT, 'hero-neural/desktop'),
     prefix:     'hero-frame',
     fps:        60,
-    maxFrames:  240,
+    maxFrames:  142,
     w:          1920, h: 1080,
-    scaleMode:  'cover',
+    scaleMode:  'cover-wide',  // over-scale 115% then crop — removes corner watermarks
   },
   {
     id:         'hero-mobile',
     group:      'hero',
-    label:      'S1 Hero Neural [mobile 750×1334 @30fps → 120 frames]',
-    input:      path.join(SOURCE_ROOT, 'HERO/hero-frame-001.mp4'),
+    label:      'S1 Hero Neural [mobile 750×1334 @30fps → 71 frames]',
+    input:      path.join(SOURCE_ROOT, 'HERO/hero-frame-001-2.mp4'),
     outputDir:  path.join(ASSETS_ROOT, 'hero-neural/mobile'),
     prefix:     'hero-frame',
     fps:        30,
-    maxFrames:  120,
+    maxFrames:  71,
     w:          750,  h: 1334,
     scaleMode:  'pad',
   },
@@ -260,6 +260,14 @@ function buildFilter(scaleMode, w, h) {
     case 'cover':
       // Scale up so shortest dimension fills target, then centre-crop
       return `scale=${w}:${h}:force_original_aspect_ratio=increase,crop=${w}:${h}`;
+
+    case 'cover-wide': {
+      // Scale to 115% of target width (maintaining aspect ratio), then centre-crop
+      // to exact target dimensions — removes ~140px on each side, eliminating
+      // any corner watermarks introduced by capture/render engines
+      const overscanW = Math.round(w * 1.15);
+      return `scale=${overscanW}:-2,crop=${w}:${h}`;
+    }
 
     case 'crop':
       // Crop to centre square first, then scale to target

@@ -172,8 +172,8 @@ export function DesignAgency() {
                 desktopFolder="/assets/scroll-sequences/hero-neural/desktop"
                 mobileFolder="/assets/scroll-sequences/hero-neural/mobile"
                 framePrefix="hero-frame"
-                totalDesktopFrames={240}
-                totalMobileFrames={120}
+                totalDesktopFrames={142}
+                totalMobileFrames={71}
                 triggerId="hero-scroll-container"
               />
             </div>
