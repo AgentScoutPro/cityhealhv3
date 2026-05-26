@@ -7,14 +7,8 @@ out/
 *.log
 .DS_Store
 
-# Scroll-sequence frame dumps (large binary assets — store in Git LFS or CDN)
+# Scroll-sequence frame dumps — committed directly for Vercel static serving
+# Re-exclude here if you migrate to Git LFS or a CDN later
 public/assets/scroll-sequences/**/*.jpg
 public/assets/scroll-sequences/**/*.jpeg
 public/assets/scroll-sequences/**/*.png
-public/assets/scroll-sequences/**/*.webp
-!public/assets/scroll-sequences/**/.gitkeep
-
-public/assets/scroll-sequences/core-problem/**/*.webp
-public/assets/scroll-sequences/service-bento/**/*.webp
-public/assets/scroll-sequences/east-valley-hub/**/*.webp
-public/assets/scroll-sequences/conversion-footer/**/*.webp
