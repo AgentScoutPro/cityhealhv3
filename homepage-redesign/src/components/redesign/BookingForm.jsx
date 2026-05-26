@@ -40,10 +40,12 @@ export default function BookingForm() {
   return (
     <form onSubmit={handleSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', textAlign: 'left' }}>
       <div>
-        <label style={{ display: 'block', fontFamily: MONO, fontSize: '0.6rem', color: '#7E9BB5', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+        <label htmlFor="booking-track" style={{ display: 'block', fontFamily: MONO, fontSize: '0.6rem', color: '#7E9BB5', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
           Primary Symptom / Track
         </label>
-        <select style={{ width: '100%', background: DEEP, border: '1px solid rgba(255,255,255,0.1)', padding: '0.875rem 1rem', fontFamily: MONO, fontSize: '0.75rem', color: '#E8EDF4', appearance: 'none', cursor: 'pointer', colorScheme: 'dark' }}>
+        <select id="booking-track" name="track" style={{ width: '100%', background: DEEP, border: '1px solid rgba(255,255,255,0.1)', padding: '0.875rem 1rem', fontFamily: MONO, fontSize: '0.75rem', color: '#E8EDF4', appearance: 'none', cursor: 'pointer', colorScheme: 'dark', transition: 'border-color 150ms ease' }}
+          onFocus={e => e.target.style.borderColor = CYAN}
+          onBlur={e  => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}>
           <option>Neuropathy Track</option>
           <option>Back &amp; Joint Path</option>
           <option>Weight Loss Protocol</option>
@@ -53,12 +55,12 @@ export default function BookingForm() {
       </div>
 
       <div>
-        <label style={{ display: 'block', fontFamily: MONO, fontSize: '0.6rem', color: '#7E9BB5', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
+        <span id="hub-label" style={{ display: 'block', fontFamily: MONO, fontSize: '0.6rem', color: '#7E9BB5', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
           Preferred Hub
-        </label>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+        </span>
+        <div role="radiogroup" aria-labelledby="hub-label" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
           {['Longmore Rd', 'Power Rd'].map((hub, i) => (
-            <label key={hub} className="hub-radio" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0.875rem', border: '1px solid rgba(255,255,255,0.1)', background: DEEP, cursor: 'pointer', fontFamily: MONO, fontSize: '0.7rem', color: '#E8EDF4', letterSpacing: '0.08em' }}>
+            <label key={hub} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0.875rem', minHeight: '44px', border: '1px solid rgba(255,255,255,0.1)', background: DEEP, cursor: 'pointer', fontFamily: MONO, fontSize: '0.7rem', color: '#E8EDF4', letterSpacing: '0.08em', transition: 'border-color 150ms ease' }}>
               <input type="radio" name="hub" value={hub} defaultChecked={i === 0} style={{ marginRight: '0.5rem', accentColor: CYAN }} />
               {hub}
             </label>
@@ -66,15 +68,31 @@ export default function BookingForm() {
         </div>
       </div>
 
-      <div>
-        <label style={{ display: 'block', fontFamily: MONO, fontSize: '0.6rem', color: '#7E9BB5', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
-          Name + Phone Number
-        </label>
-        <input
-          type="text" name="contact" required
-          placeholder="e.g. John Doe · (480) 555-0100"
-          style={{ width: '100%', background: DEEP, border: '1px solid rgba(255,255,255,0.1)', padding: '0.875rem 1rem', fontFamily: MONO, fontSize: '0.75rem', color: '#E8EDF4' }}
-        />
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+        <div>
+          <label htmlFor="booking-name" style={{ display: 'block', fontFamily: MONO, fontSize: '0.6rem', color: '#7E9BB5', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+            Full Name
+          </label>
+          <input
+            id="booking-name" type="text" name="name" required
+            placeholder="Jane Smith"
+            style={{ width: '100%', background: DEEP, border: '1px solid rgba(255,255,255,0.1)', padding: '0.875rem 1rem', fontFamily: MONO, fontSize: '0.75rem', color: '#E8EDF4', transition: 'border-color 150ms ease' }}
+            onFocus={e => e.target.style.borderColor = CYAN}
+            onBlur={e  => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
+          />
+        </div>
+        <div>
+          <label htmlFor="booking-phone" style={{ display: 'block', fontFamily: MONO, fontSize: '0.6rem', color: '#7E9BB5', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+            Phone Number
+          </label>
+          <input
+            id="booking-phone" type="tel" name="phone" required
+            placeholder="(480) 555-0100"
+            style={{ width: '100%', background: DEEP, border: '1px solid rgba(255,255,255,0.1)', padding: '0.875rem 1rem', fontFamily: MONO, fontSize: '0.75rem', color: '#E8EDF4', transition: 'border-color 150ms ease' }}
+            onFocus={e => e.target.style.borderColor = CYAN}
+            onBlur={e  => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
+          />
+        </div>
       </div>
 
       <button

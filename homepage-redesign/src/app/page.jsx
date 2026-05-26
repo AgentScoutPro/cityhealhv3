@@ -20,14 +20,13 @@ export default function HomePage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Noto+Sans:wght@300;400;700&family=Space+Mono:wght@400;700&display=swap');
-
         @keyframes gridPulse { 0%,100%{opacity:.04} 50%{opacity:.09} }
         @keyframes scanDown  { 0%{transform:translateY(-100%);opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{transform:translateY(100vh);opacity:0} }
         @keyframes fadeUp    { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
         @keyframes neonFlick { 0%,100%{opacity:1} 93%{opacity:.4} 96%{opacity:.7} }
         @keyframes dotPing   { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.7);opacity:.4} }
 
+        .ch-nav-link { cursor:pointer; }
         .ch-nav-link:hover { color:#00F2FE!important; }
         .ch-cta-primary:hover { opacity:.88; box-shadow:0 0 48px rgba(0,242,254,.45)!important; }
         .ch-cta-ghost:hover  { background:rgba(0,242,254,.08)!important; }
@@ -36,6 +35,10 @@ export default function HomePage() {
           .ch-nav-links { display:none!important; }
           .ch-ctas { flex-direction:column; align-items:stretch; }
           .ch-ctas a { text-align:center; }
+        }
+
+        @media(prefers-reduced-motion:reduce){
+          .ch-cta-primary, .ch-cta-ghost { transition:none!important; }
         }
       `}</style>
 
