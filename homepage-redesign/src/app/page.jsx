@@ -1,14 +1,20 @@
-/**
- * Production homepage — untouched during the redesign sprint.
- * Swap this file's content with the redesign-stage layout only
- * after sign-off on /redesign-stage.
- */
+import StagingShell from '@/components/redesign/StagingShell';
+import RedesignOrchestrator from '@/components/redesign/RedesignOrchestrator';
+
+export const metadata = {
+  title: 'City Health AZ | Pain Management & Physical Medicine — Mesa, AZ',
+  description:
+    'Expert pain management, neuropathy treatment, physical medicine, and anti-aging therapies in Mesa, AZ. Serving Chandler, Gilbert, Scottsdale, and the greater Phoenix metro area.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 export default function HomePage() {
   return (
-    <main>
-      <p style={{ color: '#fff', padding: '2rem', fontFamily: 'sans-serif' }}>
-        Production homepage placeholder — live site content goes here.
-      </p>
-    </main>
+    <StagingShell>
+      <RedesignOrchestrator />
+    </StagingShell>
   );
 }
