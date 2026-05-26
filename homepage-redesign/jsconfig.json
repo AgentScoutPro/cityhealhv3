@@ -2,10 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/tokens": ["src/tokens/design-tokens"],
+      "@/*":            ["src/*"],
+      "@/tokens":       ["src/tokens/design-tokens"],
       "@/components/*": ["src/components/*"],
-      "@/hooks/*": ["src/hooks/*"],
-      "@/styles/*": ["src/styles/*"]
+      "@/hooks/*":      ["src/hooks/*"],
+      "@/styles/*":     ["src/styles/*"]
     }
   }
 }
