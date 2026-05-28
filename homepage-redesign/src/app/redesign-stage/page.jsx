@@ -1,8 +1,8 @@
-import StagingShell from '@/components/redesign/StagingShell';
-import RedesignOrchestrator from '@/components/redesign/RedesignOrchestrator';
+import SiteHeaderDesert from '@/components/redesign/SiteHeaderDesert';
+import DesertOrchestrator from '@/components/redesign/DesertOrchestrator';
 
 export const metadata = {
-  title: 'Homepage Redesign — Staging | City Health AZ',
+  title: 'Homepage Redesign v3 — Desert Southwest | City Health AZ',
   description: 'Internal staging environment. Not for public distribution.',
   robots: {
     index: false,
@@ -13,8 +13,9 @@ export const metadata = {
 
 export default function RedesignStagePage() {
   return (
-    <StagingShell>
-      <RedesignOrchestrator />
-    </StagingShell>
+    <>
+      <SiteHeaderDesert staging />
+      <DesertOrchestrator />
+    </>
   );
 }

@@ -28,11 +28,22 @@ module.exports = {
         charcoal: tokens.colors.contrast.charcoal,
         'text-primary': tokens.colors.text.primary,
         'text-muted': tokens.colors.text.muted,
-        // ── Blueprint canonical names ───────────────────────────────────────
+        // ── Blueprint canonical names (Clinical Zen) ───────────────────────
         'deep-space': '#0D1117',
         'clinical-charcoal': '#1C2128',
         'neon-cyan': '#00F2FE',
         'neon-teal': '#4FACFE',
+        // ── Desert Southwest palette ───────────────────────────────────────
+        'desert-black': '#0A0C0E',
+        'desert-stone': '#141618',
+        'desert-surface': '#1C1F23',
+        'sw-orange': '#E8622A',
+        'sw-orange-light': '#F07A45',
+        'cactus-green': '#4A7C59',
+        'cactus-light': '#5A9C6E',
+        'desert-sand': '#C4A882',
+        'desert-mist': '#8A9BA8',
+        'desert-white': '#F5F0EB',
       },
       fontFamily: {
         heading: tokens.typography.heading.stack,
@@ -42,12 +53,18 @@ module.exports = {
         'neon-gradient': `linear-gradient(135deg, ${tokens.colors.accent.cyan}, ${tokens.colors.accent.teal})`,
         'neon-gradient-h': `linear-gradient(90deg, ${tokens.colors.accent.cyan}, ${tokens.colors.accent.teal})`,
         'clinical-gradient': 'linear-gradient(to right, #00F2FE, #4FACFE)',
+        'desert-gradient': 'linear-gradient(135deg, #E8622A 0%, #F07A45 50%, #C4A882 100%)',
+        'desert-gradient-v': 'linear-gradient(to bottom, #E8622A, #C44E1E)',
       },
       boxShadow: {
         'neon-sm': tokens.shadows.neonSm,
         'neon-md': tokens.shadows.neonMd,
         'neon-lg': tokens.shadows.neonLg,
         glass: tokens.shadows.glass,
+        'orange-sm': '0 0 12px rgba(232,98,42,0.2)',
+        'orange-md': '0 0 28px rgba(232,98,42,0.38)',
+        'orange-lg': '0 0 56px rgba(232,98,42,0.55)',
+        'green-sm': '0 0 12px rgba(74,124,89,0.2)',
       },
       zIndex: {
         canvas: '10',
