@@ -1,4 +1,5 @@
-import { DesignAgency } from '@/tokens/components/ui/landing-page';
+import SiteHeaderDesert from '@/components/redesign/SiteHeaderDesert';
+import DesertOrchestrator from '@/components/redesign/DesertOrchestrator';
 
 export const metadata = {
   title: 'City Health AZ | Pain Management & Physical Medicine — Mesa, AZ',
@@ -8,5 +9,10 @@ export const metadata = {
 };
 
 export default function HomePage() {
-  return <DesignAgency />;
+  return (
+    <>
+      <SiteHeaderDesert />
+      <DesertOrchestrator />
+    </>
+  );
 }
