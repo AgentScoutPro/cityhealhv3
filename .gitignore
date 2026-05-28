@@ -1,20 +1,30 @@
-# Root-level ignores for cityhealthv2 repo
-# Only homepage-redesign/ is tracked — WordPress utilities stay local
-
 node_modules/
-.DS_Store
+.next/
+out/
 .env
 .env.local
+.env*.local
 *.log
-output/
+.DS_Store
+
+# Vercel local config
+.vercel/
+
+# Non-Next.js files at repo root (WordPress / blog tools)
 downloads-city-health-blog-banners/
 seo-optimized-wp-uploads/
-
-# WordPress utility scripts (local tools — not part of V2 redesign)
+output/
 wp_publisher.js
-wp_fix_missing_images.js
 wp_inject_banner.js
-wp_image_linker.js
-package.json
-package-lock.json
-.vercel
+wp_fix_missing_images.js
+
+# Scroll-sequence frame dumps — committed directly for Vercel static serving
+# Re-exclude here if you migrate to Git LFS or a CDN later
+public/assets/scroll-sequences/**/*.jpg
+public/assets/scroll-sequences/**/*.jpeg
+public/assets/scroll-sequences/**/*.png
+
+public/assets/scroll-sequences/core-problem/**/*.webp
+public/assets/scroll-sequences/service-bento/**/*.webp
+public/assets/scroll-sequences/east-valley-hub/**/*.webp
+public/assets/scroll-sequences/conversion-footer/**/*.webp
