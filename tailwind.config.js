@@ -44,6 +44,14 @@ module.exports = {
         'desert-sand': '#C4A882',
         'desert-mist': '#8A9BA8',
         'desert-white': '#F5F0EB',
+        // ── Precision MedTech palette (V4) ────────────────────────────────
+        'precision-dark': '#06080B',
+        'precision-surface': '#0C1018',
+        'precision-panel': '#111820',
+        'precision-teal': '#00C4A6',
+        'precision-teal-light': '#00E8C4',
+        'precision-mint': '#A8F5E2',
+        'precision-violet': '#6B5FE8',
       },
       fontFamily: {
         heading: tokens.typography.heading.stack,
