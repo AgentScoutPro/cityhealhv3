@@ -28,3 +28,4 @@ public/assets/scroll-sequences/core-problem/**/*.webp
 public/assets/scroll-sequences/service-bento/**/*.webp
 public/assets/scroll-sequences/east-valley-hub/**/*.webp
 public/assets/scroll-sequences/conversion-footer/**/*.webp
+.vercel
